@@ -5,4 +5,4 @@ services:
     - docker
 
 script:
-    - ci/travis-build.sh
+    - ci/travis-build.bash
