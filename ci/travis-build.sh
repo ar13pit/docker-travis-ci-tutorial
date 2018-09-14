@@ -1,6 +1,7 @@
 #!/bin/bash
 
-echo "Starting to build docker image" 
-docker build -t "arpit-test"
+echo -e "\e[35m\e[1m Creating docker image \e[0m"
+
+docker build -t "arpit-test" ..
 ls
 docker run arpit-test
