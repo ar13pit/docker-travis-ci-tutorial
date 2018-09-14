@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -qq
 RUN apt-get upgrade -qq -y
 
-WORKDIR ~/
+WORKDIR ~
 
 RUN ls -aln
 
