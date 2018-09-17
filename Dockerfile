@@ -14,7 +14,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Update and Upgrade the image
 RUN apt-get update
-RUN apt-get upgrade -assume-yes
+RUN apt-get upgrade --assume-yes
 
 # Install basic packages
 RUN apt-get install --assume-yes --no-install-recommends sudo apt-utils git wget curl lsb-release
