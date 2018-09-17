@@ -12,23 +12,30 @@ MAINTAINER Arpit Aggarwal
 # Comment this line when not using this image with CI
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Update the image
-RUN apt-get update
+# Set environment variable USER
+ENV USER=arpit
 
-# Install basic packages
-RUN apt-get install --assume-yes --no-install-recommends sudo apt-utils git wget curl 
+# Update the image and install basic packages
+RUN apt-get update && apt-get install --assume-yes --no-install-recommends apt-utils sudo
+# git wget curl
 
-# Add user arpit with SUDO previleges and disable SUDO password
-RUN adduser --disabled-password --gecos "" arpit
-RUN addgroup arpit adm
-RUN addgroup arpit sudo
-RUN echo "%sudo ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/arpit
+# Add user USER with SUDO previleges and disable SUDO password
+RUN addgroup -gid 2000 $USER && \
+    adduser --disabled-password --gecos "" -uid 2000 -gid 2000 $USER && \
+    addgroup $USER adm && \
+    addgroup $USER sudo && \
+    echo "%sudo ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/"$USER"
+    
+USER "$USER"
 
 # Set WORKDIR to home of arpit
-WORKDIR /home/arpit
+WORKDIR /home/"$USER"
 
 # Copy contents of repository into directory _git in the home of the user
 COPY / ./_git/
+
+# Change owner of directory to USER from root
+RUN sudo chown -R $USER:$USER _git
 
 # Start container of the Docker image at bash prompt
 CMD ["/bin/bash"]
