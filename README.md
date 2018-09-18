@@ -1,4 +1,4 @@
-# Minimalistic tutorial for using Docker with Travis-CI ![travis](https://travis-ci.org/ar13pit/docker-travisci-test.svg?branch=master)
+# Minimalistic tutorial for using Docker with Travis-CI [![Build Status](https://travis-ci.org/ar13pit/docker-travis-ci-tutorial.svg?branch=master)](https://travis-ci.org/ar13pit/docker-travis-ci-tutorial)
 
 
 This repository serves as a tutorial and reference for starting to use a CI service like Travis-CI and containerization enironment Docker.
